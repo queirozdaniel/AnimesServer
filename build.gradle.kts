@@ -31,6 +31,8 @@ dependencies {
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     // Koin Core features
+    implementation("io.insert-koin:koin-ktor:$koin_version")
+    implementation("io.insert-koin:koin-logger-slf4j:$koin_version")
     implementation("io.insert-koin:koin-core:$koin_version")
     // Koin Test features
     testImplementation("io.insert-koin:koin-test:$koin_version")
