@@ -13,26 +13,14 @@ fun Route.getAllHeroes() {
     val heroRepository: HeroRepository by inject()
 
     get("/boruto/heroes") {
-        try {
-            val page = call.request.queryParameters["page"]?.toInt() ?: 1
-            require(page in 1..5)
+        val page = call.request.queryParameters["page"]?.toInt() ?: 1
+        require(page in 1..5)
 
-            val heroResponse = heroRepository.getAllHeroes(page)
+        val heroResponse = heroRepository.getAllHeroes(page)
 
-            call.respond(
-                message = heroResponse,
-                status = HttpStatusCode.OK
-            )
-        } catch (e: NumberFormatException) {
-          call.respond(
-              message = HeroResponse(success = false, message = "Only Numbers Allowed."),
-              status = HttpStatusCode.BadRequest
-          )
-        } catch (e: IllegalArgumentException) {
-            call.respond(
-                message = HeroResponse(success = false, message = "Heroes not Found."),
-                status = HttpStatusCode.NotFound
-            )
-        }
+        call.respond(
+            message = heroResponse,
+            status = HttpStatusCode.OK
+        )
     }
 }
