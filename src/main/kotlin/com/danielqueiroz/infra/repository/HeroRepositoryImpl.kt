@@ -6,6 +6,9 @@ import com.danielqueiroz.domain.repository.HeroRepository
 
 class HeroRepositoryImpl : HeroRepository {
 
+    private final val NEXT_PAGE = "NEXT_PAGE"
+    private final val PREV_PAGE = "PREV_PAGE"
+
     override val heroes: Map<Int, List<Hero>> by lazy {
         mapOf(
             1 to pageOne,
@@ -397,10 +400,34 @@ class HeroRepositoryImpl : HeroRepository {
     )
 
     override suspend fun getAllHeroes(page: Int): HeroResponse {
-        TODO("Not yet implemented")
+        return HeroResponse(
+            success = true,
+            message = "OK",
+            prevPage = calculatePage(page)[PREV_PAGE],
+            nextPage = calculatePage(page)[NEXT_PAGE],
+            heroes = heroes[page]!!
+        )
     }
 
     override suspend fun searchHeroes(name: String): HeroResponse {
         TODO("Not yet implemented")
+    }
+
+    private fun calculatePage(page: Int) : Map<String, Int?> {
+        var prevPage: Int? = page
+        var nextPage: Int? = page
+
+        nextPage = if(page in 1..4) {
+            nextPage?.plus(1)
+        } else {
+            null
+        }
+        prevPage = if(page in 2..5) {
+            prevPage?.minus(1)
+        } else {
+            null
+        }
+
+        return mapOf(PREV_PAGE to prevPage, NEXT_PAGE to nextPage)
     }
 }
