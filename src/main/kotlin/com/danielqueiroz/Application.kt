@@ -1,9 +1,6 @@
 package com.danielqueiroz
 
-import com.danielqueiroz.infra.plugins.configureDefaultHeader
-import com.danielqueiroz.infra.plugins.configureKoin
-import com.danielqueiroz.infra.plugins.configureRouting
-import com.danielqueiroz.infra.plugins.configureSerialization
+import com.danielqueiroz.infra.plugins.*
 import io.ktor.server.application.*
 import com.danielqueiroz.plugins.*
 
@@ -17,4 +14,5 @@ fun Application.module() {
     configureMonitoring()
     configureSerialization()
     configureDefaultHeader()
+    configureStatusPage()
 }
