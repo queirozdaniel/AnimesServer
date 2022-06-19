@@ -1,4 +1,4 @@
-package com.danielqueiroz.plugins
+package com.danielqueiroz.infra.plugins
 
 import io.ktor.http.*
 import io.ktor.server.application.*
