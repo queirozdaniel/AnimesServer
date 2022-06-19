@@ -2,6 +2,7 @@ package com.danielqueiroz.infra.plugins
 
 import com.danielqueiroz.api.routes.getAllHeroes
 import com.danielqueiroz.api.routes.root
+import com.danielqueiroz.api.routes.searchHeroes
 import io.ktor.server.routing.*
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -13,5 +14,6 @@ fun Application.configureRouting() {
     routing {
         root()
         getAllHeroes()
+        searchHeroes()
     }
 }

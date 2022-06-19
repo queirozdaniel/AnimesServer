@@ -17,10 +17,10 @@ fun Route.getAllHeroes() {
             val page = call.request.queryParameters["page"]?.toInt() ?: 1
             require(page in 1..5)
 
-            val heroReponse = heroRepository.getAllHeroes(page)
+            val heroResponse = heroRepository.getAllHeroes(page)
 
             call.respond(
-                message = heroReponse,
+                message = heroResponse,
                 status = HttpStatusCode.OK
             )
         } catch (e: NumberFormatException) {
